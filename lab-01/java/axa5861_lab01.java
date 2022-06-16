@@ -8,7 +8,6 @@ OS          :   macOS Big Sur Version 11.5.1 (M1 Chip)
 
 import java.nio.file.Path;
 import java.io.File;
-//import java.nio.file.Files;
 
 class TotalSize {
 
