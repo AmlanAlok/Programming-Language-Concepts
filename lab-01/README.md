@@ -3,12 +3,12 @@ Commands to execute programs.
 
 Python:
 -------
-python axa5861_lab01.py
+python python/axa5861_lab01.py
 
 Java
 -------
-javac axa5861_lab01.java
-java axa5861_lab01.java
+javac java/axa5861_lab01.java
+java java/axa5861_lab01.java
 
 C
 ---
