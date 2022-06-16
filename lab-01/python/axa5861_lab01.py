@@ -33,6 +33,7 @@ def get_total_size(path=''):
         elif os.path.isdir(full_path):      # isdir func returns True if the path is a Directory
             print('Directory found -> ' + item_name)
             total_size += get_total_size(full_path) # recursion to access sub-directories
+            print('----------------')
         else:
             exception_msg = 'Item = ' + item_name + ' is not a file or directory'
             print(exception_msg)
@@ -42,8 +43,9 @@ def get_total_size(path=''):
 
 def main():
     total_size = get_total_size()
-    print('******')
+    print('*********************************')
     print('Total Size = ' + str(total_size) + ' Bytes')
+    print('*********************************')
 
 
 if __name__ == '__main__':
