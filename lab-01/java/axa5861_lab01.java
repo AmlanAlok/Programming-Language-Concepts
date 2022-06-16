@@ -14,12 +14,10 @@ class TotalSize {
 
     public int getTotalSize(String path){
 
-//         Path path = FileSystems.getDefault().getPath(".");
+        int totalSize = 0;
 
-        String cwd = Path.of("").toAbsolutePath().toString();
-        System.out.println(cwd);
         if (path == "") {
-            path = cwd;
+            path = Path.of("").toAbsolutePath().toString();
         }
 
         File directory = new File(path);
@@ -29,19 +27,24 @@ class TotalSize {
             for (File itemName: dir_contents) {
                 if (itemName.isFile()){
                       System.out.println("File = " + itemName + " has size = " + itemName.length() + " Bytes");
+                      totalSize += itemName.length();
                 }
                 else if (itemName.isDirectory()) {
                     System.out.println("Directory = " + itemName);
+                    totalSize += getTotalSize(itemName.toString());
+                    System.out.println("------------------------");
                 }
             }
         }
 
-        return 0;
+        return totalSize;
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
         TotalSize totalSize = new TotalSize();
-        totalSize.getTotalSize("");
+        int totalSizeValue = totalSize.getTotalSize("");
+        System.out.println("*****************************");
+        System.out.println("Total Size = " + totalSizeValue + " Bytes");
+        System.out.println("*****************************");
     }
 }
