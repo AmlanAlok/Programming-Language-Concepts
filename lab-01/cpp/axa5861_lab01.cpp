@@ -1,5 +1,10 @@
-// Your First C++ Program
-
+/**
+Instruction 10
+Name        :   Amlan Alok
+UTA ID      :   1001855861
+Lang Version:   Apple clang version 12.0.5
+OS          :   macOS Big Sur Version 11.5.1 (M1 Chip)
+ */
 
 #include<stdio.h>
 #include<string>
@@ -9,58 +14,66 @@
 #define GetCurrentDir getcwd
 #include<iostream>
 
-std::string GetCurrentWorkingDir( void ) {
+// This function returns the path of current working directory (CWD)
+std::string getCurrentWorkingDir(void) {
   char buff[FILENAME_MAX];
   GetCurrentDir( buff, FILENAME_MAX );
   std::string current_working_dir(buff);
   return current_working_dir;
 }
 
-int gds(char p[])
+int getTotalSize(char path[])
 {
-  int t = 0;
-  char df[2000];
-  std::string cwd = GetCurrentWorkingDir();
-  struct dirent *dp;
+  int totalSize = 0;
+  char filePath[2000];
+  // fetches the current working directory (CWD)
+  std::string cwd = getCurrentWorkingDir();
+  struct dirent *item;
   struct stat file;
 
- if (strcmp(p, "") == 0){
-    p = const_cast<char*>(cwd.c_str());
+  // if path is empty then it will use the CWD
+ if (strcmp(path, "") == 0){
+    path = const_cast<char*>(cwd.c_str());
  }
 
-  DIR *ditory = opendir(p);
+  DIR *directory = opendir(path); // opens directory stream
 
-  while ((dp=readdir(ditory))!=NULL) 
+  while ((item=readdir(directory))!=NULL) 
   {
-    if(strcmp(dp->d_name,".")==0 || strcmp(dp->d_name,"..")==0)
+    // "." is a hardlink to its containing directory. Hence, skipped.
+    // ".." means parent directory. Hence, skipped.
+    if(strcmp(item->d_name,".")==0 || strcmp(item->d_name,"..")==0)
     {
       continue;
     }
-    strcpy(df,p);
-    strcat(df,"/");
-    strcat(df,dp->d_name);
-    stat(df,&file);
+    strcpy(filePath,path);
+    strcat(filePath,"/");
+    strcat(filePath,item->d_name); // creating full path for item
+    stat(filePath,&file);
     
     if(S_ISREG(file.st_mode))
     {
-      FILE *fpoint = fopen(df,"r");
+      FILE *fpoint = fopen(filePath,"r");
       fseek(fpoint,0L,SEEK_END);
       int res = ftell(fpoint);
-      t += res;
+      totalSize += res;
       fclose(fpoint);
     }
-    else
+    else if (S_ISDIR(file.st_mode))
     {
-      t += gds(df);
+      totalSize += getTotalSize(filePath); // recursion call
+    }
+    else {
+        printf("Neither a file nor a directory");
     }
   }
-  return t;
+  return totalSize;
 
 }
 
 int main()
 {
-  int totalSize = gds("");
+  int totalSize = getTotalSize("");
   printf("\n******************");
   printf("\n%d",totalSize);
   printf("\n******************");
@@ -68,33 +81,6 @@ int main()
   return 0;
 }
 
-
-//--------
-
-// #include <stdio.h>  /* defines FILENAME_MAX */
-// // #define WINDOWS  /* uncomment this line to use it for windows.*/ 
-// // #ifdef WINDOWS
-// // #include <direct.h>
-// // #define GetCurrentDir _getcwd
-// // #else
-// #include <unistd.h>
-// #define GetCurrentDir getcwd
-// // #endif
-// #include<iostream>
-
-// std::string GetCurrentWorkingDir( void ) {
-//   char buff[FILENAME_MAX];
-//   GetCurrentDir( buff, FILENAME_MAX );
-//   std::string current_working_dir(buff);
-//   return current_working_dir;
-// }
-
-// int main(){
-//   std::cout << GetCurrentWorkingDir() << std::endl;
-//   return 1;
-// }
-
-//--------
 
 
 
@@ -135,31 +121,4 @@ int main()
 //     return 1;
 //   }
 //   return 0;
-// }
-
-// #include <iostream>
-// #include <string>
-// #include <filesystem>
-// #include <unistd.h>
-
-// using std::cout; using std::cin;
-// using std::endl; using std::string;
-// using std::filesystem::current_path;
-
-// int main() {
-//     char tmp[256];
-//     getcwd(tmp, 256);
-//     cout << "Current working directory: " << tmp << endl;
-
-//     return EXIT_SUCCESS;
-// }
-
-// #include <iostream>
-// #include <filesystem>
-// namespace fs = std::filesystem;
-// int main()
-// {
-//     std::cout << "Current path is " << fs::current_path() << '\n'; // (1)
-//     fs::current_path(fs::temp_directory_path()); // (3)
-//     std::cout << "Current path is " << fs::current_path() << '\n';
 // }
