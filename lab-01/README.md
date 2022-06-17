@@ -1,5 +1,5 @@
 
-Commands to execute programs.
+Commands to execute programs from lab-01 folder.
 
 Python:
 -------
@@ -9,11 +9,6 @@ Java
 -------
 javac java/axa5861_lab01.java
 java java/axa5861_lab01.java
-
-C
----
-gcc -o axa5861_lab01 c/axa5861_lab01.c
-./axa5861_lab01
 
 CPP
 ---

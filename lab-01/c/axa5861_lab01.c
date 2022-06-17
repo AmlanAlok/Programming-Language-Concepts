@@ -1,72 +1,74 @@
-/**
-Instruction 10
-Name        :   Amlan Alok
-UTA ID      :   1001855861
-Lang Version:   Apple clang version 12.0.5
-OS          :   macOS Big Sur Version 11.5.1 (M1 Chip)
- */
 
-// # include <stdio.h>
-
-// int main() {
-//    // printf() displays the string inside quotation
-//    printf("Hello, World!");
-//    return 0;
-// }
-
-
-#include <stdio.h>
-#include <dirent.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+#include<stdio.h>
+#include<string.h>
+#include<dirent.h>
+#include<sys/stat.h>
 #include <unistd.h>
+#define GetCurrentDir getcwd
+#include<iostream>
 
-int isDir(const char* fileName)
-{
-    struct stat path;
-
-    stat(fileName, &path);
-
-    return S_ISREG(path.st_mode);
+// This function returns the path of current working directory (CWD)
+std::string getCurrentWorkingDir(void) {
+  char buff[FILENAME_MAX];
+  GetCurrentDir( buff, FILENAME_MAX );
+  std::string current_working_dir(buff);
+  return current_working_dir;
 }
 
-int is_regular_file(const char *path)
+int getTotalSize(char path[])
 {
-    struct stat path_stat;
-    stat(path, &path_stat);
-    return S_ISREG(path_stat.st_mode);
+  int totalSize = 0;
+  char filePath[2000];
+  // fetches the current working directory (CWD)
+  std::string cwd = getCurrentWorkingDir();
+  struct dirent *item;
+  struct stat file;
+
+  // if path is empty then it will use the CWD
+ if (strcmp(path, "") == 0){
+    path = const_cast<char*>(cwd.c_str());
+ }
+
+  DIR *directory = opendir(path); // opens directory stream
+
+  while ((item=readdir(directory))!=NULL) 
+  {
+    // "." is a hardlink to its containing directory. Hence, skipped.
+    // ".." means parent directory. Hence, skipped.
+    if(strcmp(item->d_name,".")==0 || strcmp(item->d_name,"..")==0)
+    {
+      continue;
+    }
+    strcpy(filePath,path);
+    strcat(filePath,"/");
+    strcat(filePath,item->d_name); // creating full path for item
+    stat(filePath,&file);
+    
+    if(S_ISREG(file.st_mode)) // returns True if a file
+    {
+      FILE *fpoint = fopen(filePath,"r");
+      fseek(fpoint,0L,SEEK_END);
+      int res = ftell(fpoint);
+      totalSize += res;
+      fclose(fpoint);
+    }
+    else if (S_ISDIR(file.st_mode)) // returns True if a directory
+    {
+      totalSize += getTotalSize(filePath);
+    }
+    else {
+        printf("Neither a File nor a Directory")
+    }
+  }
+  return totalSize;
+
 }
-  
-int main(void)
+
+int main()
 {
-   struct dirent *de;  // Pointer for directory entry
-
-   // opendir() returns a pointer of DIR type. 
-   DIR *dr = opendir(".");
-
-   if (dr == NULL)  // opendir returns NULL if couldn't open directory
-   {
-      printf("Could not open current directory" );
-      return 0;
-   }
-
-   int ret = -1;
-   int y = -1;
-
-   // Refer http://pubs.opengroup.org/onlinepubs/7990989775/xsh/readdir.html
-   // for readdir()
-   while ((de = readdir(dr)) != NULL)
-         printf("%s\n", de->d_name);
-
-         ret = isDir(de->d_name);
-         if (ret == 0)
-            printf("Directory\n");
-
-         y = is_regular_file(de->d_name);
-
-         printf("%d", y);
-         
-
-   closedir(dr);    
-   return 0;
+  int totalSize = getTotalSize("");
+  printf("\n******************");
+  printf("\n%d",totalSize);
+  printf("\n******************");
+  return 0;
 }
