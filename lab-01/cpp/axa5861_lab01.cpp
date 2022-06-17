@@ -75,7 +75,7 @@ int main()
 {
   int totalSize = getTotalSize("");
   printf("\n******************");
-  printf("\n%d",totalSize);
+  printf("\n Total size = %d Bytes",totalSize);
   printf("\n******************");
 
   return 0;
