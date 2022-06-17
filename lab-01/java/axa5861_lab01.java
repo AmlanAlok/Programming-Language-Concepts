@@ -6,6 +6,16 @@ Lang Version:   java 16.0.2 2021-07-20
 OS          :   macOS Big Sur Version 11.5.1 (M1 Chip)
  */
 
+/**
+Code Explanation
+----------------
+If no path is mentioned then the current directory is explored for its contents.
+If the item is a file then its size is stored and if it is directory the 
+same function is called with the directory's path.
+This recursion stops when all directories have been explored and file sizes stored.
+The final size is returned.
+ */
+ 
 import java.nio.file.Path;
 import java.io.File;
 

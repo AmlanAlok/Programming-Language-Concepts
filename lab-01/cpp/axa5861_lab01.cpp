@@ -6,6 +6,16 @@ Lang Version:   Apple clang version 12.0.5
 OS          :   macOS Big Sur Version 11.5.1 (M1 Chip)
  */
 
+/**
+Code Explanation
+----------------
+If no path is mentioned then the current directory is explored for its contents.
+If the item is a file then its size is stored and if it is directory the 
+same function is called with the directory's path.
+This recursion stops when all directories have been explored and file sizes stored.
+The final size is returned.
+ */
+
 #include<stdio.h>
 #include<string>
 #include<dirent.h>
@@ -53,11 +63,11 @@ int getTotalSize(char path[])
     
     if(S_ISREG(file.st_mode))
     {
-      FILE *fpoint = fopen(filePath,"r");
-      fseek(fpoint,0L,SEEK_END);
-      int res = ftell(fpoint);
-      totalSize += res;
-      fclose(fpoint);
+      FILE *start = fopen(filePath,"r");
+      fseek(start,0L,SEEK_END);
+      int value = ftell(start);
+      totalSize += value;
+      fclose(start);
     }
     else if (S_ISDIR(file.st_mode))
     {
