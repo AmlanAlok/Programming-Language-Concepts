@@ -52,3 +52,19 @@ const volumeWithHeight11 = cylinderRadius5(11)
 console.log(`volumeWithHeight11 = ${volumeWithHeight11}`)
 
 
+const makeTag = (beginTag, endTag) =>{
+    return (textContent) => '\n' + beginTag + textContent + endTag
+}
+    
+console.log('------------------------------- Q6')
+
+const tableTag = makeTag('<table>', '</table>')
+const trTag = makeTag('<tr>','</tr>')
+const thTag = makeTag('<th>','</th>')
+
+const rowData1 = trTag(thTag('Jon') + thTag('Snow') + thTag('22') + '\n')
+const rowData2 = trTag(thTag('Arya') + thTag('Stark') + thTag('14') + '\n')
+const rowData3 = trTag(thTag('Bran') + thTag('Stark') + thTag('12') + '\n')
+
+const output = tableTag(rowData1+'\n'+rowData2+'\n'+rowData3+'\n')
+console.log(output)
