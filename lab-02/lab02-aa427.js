@@ -68,3 +68,28 @@ const rowData3 = trTag(thTag('Bran') + thTag('Stark') + thTag('12') + '\n')
 
 const output = tableTag(rowData1+'\n'+rowData2+'\n'+rowData3+'\n')
 console.log(output)
+
+console.log('------------------------------- Q8')
+
+const general = multipleOf => type =>{
+    const n100 = 100
+    const arr100 = [...Array(n100).keys()].map(x => x+1)
+    const multiples = arr100.filter(x => x%multipleOf === 0)
+    if (type === 'even'){
+        return multiples.filter(x => x%2 === 0)
+    }
+    else if (type === 'odd'){
+        return multiples.filter(x => x%2 === 1)
+    }
+    else {
+        throw Error('The expected types are even and odd. Unexpected input.')
+    }
+}
+
+const multiplesOf5 = general(5)
+const oddMultiplesOf5 = multiplesOf5('odd')
+console.log(oddMultiplesOf5)
+
+const multiplesOf7 = general(7)
+const evenMultiplesOf7 = multiplesOf7('even')
+console.log(evenMultiplesOf7)
