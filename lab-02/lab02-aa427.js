@@ -17,8 +17,8 @@ const squaresTable = inputtable.map(x => x*x)
 console.log(squaresTable)
 
 console.log('------------------------------- Q3')
-const n2 = 20
-const multiplesOfFive = [...Array(n2).keys()].map(x => x+1).map(x => x*5)
+const n100 = 100
+const multiplesOfFive = [...Array(n100).keys()].map(x => x+1).filter(x => x%5 === 0)
 // console.log(multiplesOfFive)
 
 // chekcing if remainder is 1 for odd
@@ -26,9 +26,8 @@ const oddFiveMultiples = multiplesOfFive.filter(x => x%2 === 1)
 console.log(oddFiveMultiples)
 
 console.log('------------------------------- Q4')
-const n3 = 14
-const multiplesOfSeven = [...Array(n3).keys()].map(x => x+1).map(x => x*7)
-console.log(multiplesOfSeven)
+const multiplesOfSeven = [...Array(n100).keys()].map(x => x+1).filter(x => x%7 === 0)
+// console.log(multiplesOfSeven)
 
 const evenSevenMultiples = multiplesOfSeven.filter(x => x%2 === 0)
 console.log(evenSevenMultiples)
