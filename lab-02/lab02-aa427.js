@@ -69,6 +69,7 @@ const output = tableTag(rowData1+'\n'+rowData2+'\n'+rowData3+'\n')
 console.log(output)
 
 console.log('------------------------------- Q8')
+console.log('For even or odd, use arguments as \"even\" or \"odd\"')
 
 const general = multipleOf => {
     const n100 = 100
