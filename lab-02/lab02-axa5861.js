@@ -1,19 +1,32 @@
-
+/**
+ * Name: Amlan Alok
+ * Student ID: 1001855861
+ * Due Date: 11th July, 2022
+ */
 
 console.log('------------------------------- Q1')
 const n1 = 10
+// creating array of size 10 using spread operator and Array().keys()
+// map is used to increment each element by 1
 const inputtable = [...Array(n1).keys()].map(x => x+1)
 console.log(inputtable)
 
+
+
 console.log('------------------------------- Q2')
+// map is used to multiply each element in inputable by 5
 const fiveTable = inputtable.map(x => x*5)
 console.log(fiveTable)
 
+// map is used to multiply each element in inputable by 13
 const thirteenTable = inputtable.map(x => x*13)
 console.log(thirteenTable)
 
+// map is used to multiply each element in inputable by the elemtn itself
 const squaresTable = inputtable.map(x => x*x)
 console.log(squaresTable)
+
+
 
 console.log('------------------------------- Q3')
 const n100 = 100
@@ -24,6 +37,8 @@ const multiplesOfFive = [...Array(n100).keys()].map(x => x+1).filter(x => x%5 ==
 const oddFiveMultiples = multiplesOfFive.filter(x => x%2 === 1)
 console.log(oddFiveMultiples)
 
+
+
 console.log('------------------------------- Q4')
 const multiplesOfSeven = [...Array(n100).keys()].map(x => x+1).filter(x => x%7 === 0)
 // console.log(multiplesOfSeven)
@@ -33,6 +48,8 @@ console.log(evenSevenMultiples)
 
 const evenSevenMultiplesSum = evenSevenMultiples.reduce((acc, x) => acc+x)
 console.log(`evenSevenMultiplesSum = ${evenSevenMultiplesSum}`)
+
+
 
 console.log('------------------------------- Q5')
 
@@ -54,6 +71,8 @@ const makeTag = (beginTag, endTag) =>{
     return (textContent) => '\n' + beginTag + textContent + endTag
 }
     
+
+
 console.log('------------------------------- Q6')
 
 const tableTag = makeTag('<table>', '</table>')
@@ -66,6 +85,7 @@ const rowData3 = trTag(thTag('Bran') + thTag('Stark') + thTag('12') + '\n')
 
 const output = tableTag(rowData1+'\n'+rowData2+'\n'+rowData3+'\n')
 console.log(output)
+
 
 console.log('------------------------------- Q8')
 console.log('For even or odd, use arguments as \"even\" or \"odd\"')
