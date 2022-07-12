@@ -2,6 +2,9 @@
  * Name: Amlan Alok
  * Student ID: 1001855861
  * Due Date: 11th July, 2022
+ * 
+ * Used below command to run the file
+ * node lab02-axa5861.js 
  */
 
 console.log('------------------------------- Q1')
