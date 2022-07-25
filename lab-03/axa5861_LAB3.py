@@ -9,9 +9,11 @@ import os
 
 
 def main():
+    read_file('input_RPN.txt')
 
+
+def read_file(filename):
     current_directory = os.getcwd()
-    input_filename = 'input_RPN.txt'
     operations = {
         '+': lambda a, b: a + b,
         '-': lambda a, b: a - b,
@@ -19,7 +21,7 @@ def main():
         '/': lambda a, b: a / b
     }
 
-    full_path = os.path.join(current_directory, input_filename)
+    full_path = os.path.join(current_directory, filename)
 
     with open(full_path, 'r') as f:
         while True:
@@ -36,6 +38,7 @@ def rpn(line, operations):
     stack = []
 
     for x in line_data:
+
         x_ascii = ord(x)
 
         if x in operations:
