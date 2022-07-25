@@ -34,6 +34,7 @@ def main():
             print(ans)
     f.close()
 
+
 def infix_to_rpn(line):
     line_data = line.split()
     stack = []
@@ -70,13 +71,11 @@ def rpn(line, operations):
 
     for x in line_data:
 
-        x_ascii = ord(x)
-
         if x in operations:
             b, a = stack.pop(), stack.pop()
             result = operations[x](a, b)
             stack.append(result)
-        elif 48 <= x_ascii <= 57:
+        elif '0' <= x <= '9':
             stack.append(int(x))
         else:
             print('Invalid operation provided for input =', x)
