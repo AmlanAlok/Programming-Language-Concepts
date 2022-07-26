@@ -1,8 +1,9 @@
 """
 Name: Amlan Alok
 StudentID: 1001855861
-Date:
+Date: 25th July, 2022
 OS: maxOS Big Sur Version 11.5.1 M1 Chip
+Python Version: 3.9.2
 """
 
 ''' The additional operator added here is the modulo division (%)'''
@@ -39,11 +40,11 @@ def infix_to_rpn(line):
     line_data = line.split()
     stack = []
     operator_priority = {
-        '-':0,
-        '+':1,
-        '*':2,
-        '/':3,
-        '%':4
+        '-': 0,
+        '+': 1,
+        '*': 2,
+        '/': 3,
+        '%': 4
     }
     rpn = ''
 

@@ -1,8 +1,9 @@
 """
 Name: Amlan Alok
 StudentID: 1001855861
-Date:
+Date: 25th July, 2022
 OS: maxOS Big Sur Version 11.5.1 M1 Chip
+Python Version: 3.9.2
 """
 
 import os
