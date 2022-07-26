@@ -6,7 +6,7 @@ OS: maxOS Big Sur Version 11.5.1 M1 Chip
 Python Version: 3.9.2
 """
 
-''' The additional operator added here is the modulo division (%)'''
+""" The additional operator added here is the modulo division (%)"""
 import os
 
 
