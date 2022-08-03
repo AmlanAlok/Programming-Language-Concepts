@@ -39,6 +39,7 @@ def fetch_user_input():
     width, length = int(width), int(length)
     return width, length
 
+
 def init_arrays(h, v2):
     w, v = [], []
     w.append([None] * v2)
