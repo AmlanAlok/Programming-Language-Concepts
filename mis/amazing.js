@@ -58,8 +58,8 @@ async function main()
         // a = await input();
         // h = parseInt(a);
         // v2 = parseInt(a.substr(a.indexOf(",") + 1));
-        h = 10
-        v2 = 10
+        h = 10  // row count or width
+        v2 = 10     // column count or length
         if (h > 1 && v2 > 1)
             break;
         console.log("MEANINGLESS DIMENSIONS.  TRY AGAIN.\n");
@@ -83,7 +83,7 @@ async function main()
     x = Math.floor(Math.random() * h + 1);
     polo = ""
     for (i = 1; i <= h; i++) {
-        if (i == x)
+        if (i == x)         // entrance pos chosen randomly
             // console.log(".  ");
             polo = polo + ".  "
         else
@@ -99,8 +99,8 @@ async function main()
     w[x][1] = c;
     c++;
     r = x;
-    s = 1;
-    entry = 0;
+    s = 1;      // ?
+    entry = 0;      // ?
     while (1) {
         if (entry == 2) {	// Search for a non-explored cell
             do {
