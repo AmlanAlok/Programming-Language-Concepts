@@ -156,3 +156,5 @@ dmypy.json
 /dist/
 /nbdist/
 /.nb-gradle/
+
+.vscode
